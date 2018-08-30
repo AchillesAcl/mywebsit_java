@@ -33,8 +33,11 @@
             <props>
                 <!--是否展示SQL语句-->
                 <prop key="hibernate.show_sql">true</prop>
-                <!-- 是否自动创建表结构 -->
+                <!-- 输出底层 SQL 语句格式 -->
+                <prop key="hibernate.format_sql">true</prop>
+                <!-- 是否自动创建表结构,有就更新,无则生成 -->
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--配置数据库方言-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
             </props>
         </property>

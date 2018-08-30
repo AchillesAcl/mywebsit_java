@@ -1,8 +1,7 @@
-package com.achilles.entity;
+package com.achilles.admin;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Achilles 2018-08-28
@@ -10,9 +9,12 @@ import javax.persistence.Table;
 @Entity
 @Table()
 public class Admin {
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
+    @Column
     private String name;
+    @Column
     private String password;
     public Admin(){}
     public int getId() {

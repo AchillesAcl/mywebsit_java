@@ -1,6 +1,6 @@
 package com.achilles.service;
 
-import com.achilles.entity.Admin;
+import com.achilles.admin.Admin;
 
 /**
  * @author Achilles 2018-08-28

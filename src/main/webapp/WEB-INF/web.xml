@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
+    <display-name>mywebsit</display-name>
+    <welcome-file-list>
+        <welcome-file>/WEB-INF/admin/login.jsp</welcome-file>
+    </welcome-file-list>
     <!--配置Spring监听器-->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -13,7 +17,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:applicationContext.xml</param-value>
     </context-param>
-    <!--配置Struts2过滤器-->
+    <!--配置Struts2过滤器,此处版本为2.5.13,要注意2.3版本及以下的filter-class的配置不一样-->
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter</filter-class>

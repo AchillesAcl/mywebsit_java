@@ -1,11 +1,9 @@
-package com.achilles.dao;
-
-import com.achilles.entity.Admin;
+package com.achilles.admin;
 
 /**
  * @author Achilles 2018-08-28
  */
 public interface AdminDao {
     void saveAdmin(Admin admin);
-    void loadAdmin(Admin admin);
+    Admin login(Admin admin);
 }
