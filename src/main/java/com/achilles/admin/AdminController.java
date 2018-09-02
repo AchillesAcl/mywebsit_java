@@ -1,9 +1,7 @@
 package com.achilles.admin;
 
 import com.achilles.service.AdminService;
-import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +14,7 @@ import javax.annotation.Resource;
 @Controller
 @RequestMapping("test")
 public class AdminController {
-    @Resource(name = "adminService")
+    @Resource()
     private AdminService adminService;
     @RequestMapping(value ="/save",method = RequestMethod.POST)
     @ResponseBody
