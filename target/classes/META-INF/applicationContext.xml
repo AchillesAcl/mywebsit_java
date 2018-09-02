@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                            http://www.springframework.org/schema/tx
+                            http://www.springframework.org/schema/tx/spring-tx-2.0.xsd">
+
+    <!-- 指定Spring需要扫描的包，需要Spring管理的Bean必须在此包里. -->
+    <!-- 当然，由SpringMVC已扫描的bean此处并不需要扫描.(可指明不需要哪些bean，此处未实现) -->
+    <!--<context:component-scan base-package="com.achilles"/>-->
+    <!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <context:property-placeholder location="classpath:/META-INF/log4j.properties"/>
+    <!--扫描配置文件(这里指向的是之前配置的那个config.properties)-->
+    <context:property-placeholder location="classpath:/jdbc.properties"/>
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClass}"/>  <!--数据库连接驱动-->
+        <property name="jdbcUrl" value="${jdbc.url}"/>     <!--数据库地址-->
+        <property name="user" value="${jdbc.username}"/>   <!--用户名-->
+        <property name="password" value="${jdbc.password}"/>   <!--密码-->
+        <property name="maxPoolSize" value="40"/>      <!--最大连接数-->
+        <property name="minPoolSize" value="1"/>       <!--最小连接数-->
+        <property name="initialPoolSize" value="10"/>      <!--初始化连接池内的数据库连接-->
+        <property name="maxIdleTime" value="20"/>  <!--最大空闲时间-->
+    </bean>
+    <!-- 配置SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <!-- 指定Hibernate的连接方言 -->
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <!--是否根据Hiberante映射创建数据表 -->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+            </props>
+        </property>
+        <!-- 指明与数据库表对应的实体类(这种特殊的类我更倾向在配置文件中指明，一目了然) -->
+        <property name="annotatedClasses">
+            <list>
+                <value>com.achilles.admin.Admin</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置一个事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+</beans>
