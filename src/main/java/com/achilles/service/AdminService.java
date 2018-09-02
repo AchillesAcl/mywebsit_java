@@ -10,9 +10,9 @@ import javax.annotation.Resource;
 /**
  * @author Achilles 2018-09-01
  */
-@Service
+@Service("adminService")
 public class AdminService {
-    @Resource
+    @Resource(name = "adminDao")
     private AdminDao adminDao;
     @Transactional
     public void save(Admin admin){

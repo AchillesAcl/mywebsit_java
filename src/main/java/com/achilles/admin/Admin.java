@@ -1,22 +1,18 @@
 package com.achilles.admin;
-
-
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * @author Achilles 2018-08-28
  */
 @Entity
 @Table(name = "admin")
-public class Admin implements Serializable {
+public class Admin   {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column
+    @Column(name = "id")
     private int id;
-    @Column
     private String name;
-    @Column
+    @Column(name = "password")
     private String password;
     public Admin(){}
     public int getId() {

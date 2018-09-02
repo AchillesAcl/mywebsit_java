@@ -9,9 +9,9 @@ import javax.annotation.Resource;
 /**
  * @author Achilles 2018-08-28
  */
-@Repository
+@Repository("adminDao")
 public class AdminDao {
-    @Resource
+    @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
     public void save(Admin admin) {
