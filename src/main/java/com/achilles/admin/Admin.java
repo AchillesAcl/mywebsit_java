@@ -11,10 +11,11 @@ public class Admin   {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Column(unique = true)
     private String name;
     @Column(name = "password")
     private String password;
-    public Admin(String s){}
+    Admin(String s){}
     public int getId() {
         return id;
     }
