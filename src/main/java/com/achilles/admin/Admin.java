@@ -14,7 +14,7 @@ public class Admin   {
     private String name;
     @Column(name = "password")
     private String password;
-    public Admin(){}
+    public Admin(String s){}
     public int getId() {
         return id;
     }

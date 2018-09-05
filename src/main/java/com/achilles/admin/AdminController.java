@@ -1,6 +1,5 @@
 package com.achilles.admin;
 
-import com.achilles.service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,14 +11,14 @@ import javax.annotation.Resource;
  * @author Achilles 2018-09-01
  */
 @Controller
-@RequestMapping("test")
+@RequestMapping("/test")
 public class AdminController {
-    @Resource()
+    @Resource
     private AdminService adminService;
-    @RequestMapping(value ="/save",method = RequestMethod.POST)
     @ResponseBody
+    @RequestMapping(value ="/save")
     public Admin creatAdmin(){
-        Admin admin = new Admin();
+        Admin admin = new Admin("/save");
         admin.setId(1);
         admin.setName("achilles");
         admin.setPassword("123");
